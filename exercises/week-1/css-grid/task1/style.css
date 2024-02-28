@@ -1,0 +1,80 @@
+#task1 .container {
+  float: left;
+  height: 200px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  margin: 10px;
+}
+
+#task1 .container.container1 {
+  grid-template-areas:
+    "h h h h h h"
+    "s s m m m m"
+    "s s m m m m"
+    "s s m m m m"
+    "s s f f f f";
+}
+
+#task1 .container.container2 {
+  grid-template-areas:
+    "h h h h h h"
+    "f f m s s s"
+    "f f m s s s"
+    "f f m s s s"
+    "f f m s s s";
+}
+
+#task1 .container.container3 {
+  grid-template-areas:
+    "s s s s s s"
+    "f f f m m h"
+    "f f f m m h"
+    "f f f m m h"
+    "f f f m m h";
+}
+
+#task1 .container.container4 {
+  grid-template-areas:
+    "h h f f s s"
+    "h h f f s s"
+    "h h f f s s"
+    "h h m m s s"
+    "h h m m s s";
+}
+
+#task1 .container.container5 {
+  grid-template-areas:
+  "h h f f s s"
+  "h h f f s s"
+  "h h . . s s"
+  "h h m m s s"
+  "h h m m s s";
+}
+
+#task1 .container .head {
+  grid-area: h;
+  background-color: #F7B733;
+}
+
+#task1 .container .side-nav {
+  grid-area: s;
+  background-color: #FC4A1A;
+}
+
+#task1 .container .main {
+  grid-area: m;
+  background-color: #4ABDAC;
+}
+
+#task1 .container .foot {
+  grid-area: f;
+  background-color: #DFDCE3;
+}
+
+#results-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
