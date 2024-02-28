@@ -1,0 +1,173 @@
+#task1 {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: relative;
+}
+
+#task1 > div {
+  position: absolute;
+  background: blue;
+}
+
+#task1 .top-left {
+  top: 0px;
+  left: 0px;
+  width: 15px;
+  height: 20px;
+}
+
+#task1 .top-right {
+  top: 0px;
+  right: 0px;
+  width: 75px;
+  height: 20px;
+}
+
+#task1 .bottom-left {
+  bottom: 0px;
+  left: 0px;
+  width: 15px;
+  height: 70px;
+}
+
+#task1 .bottom-right {
+  bottom: 0px;
+  right: 0px;
+  width: 75px;
+  height: 70px;
+}
+
+#task2 {
+  width: 250px;
+  height: 100px;
+  background: #6C5CE7;
+  position: relative;
+}
+
+#task2 .label-x {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+#task2 .label-y {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+#task2 .bars {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+#task2 .bars .bar {
+  width: 20px;
+  margin: 0px 5px;
+  background: #B2BEC3;
+  display: inline-block;
+}
+
+#task2 .bars .bar:first-child {
+  margin-left: 0px;
+}
+
+#task2 .bars .bar:last-child {
+  margin-right: 0px;
+}
+
+#task2 .bars .bar1 {
+  height: 5px;
+}
+
+#task2 .bars .bar2 {
+  height: 10px;
+}
+
+#task2 .bars .bar3 {
+  height: 20px;
+}
+
+#task2 .bars .bar4 {
+  height: 35px;
+}
+
+#task2 .bars .bar5 {
+  height: 55px;
+}
+
+#task2 .bars .bar6 {
+  height: 80px;
+}
+
+#task3 {
+  width: 300px;
+  height: 200px;
+  position: relative;
+}
+
+#task3 .left {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 60px;
+  height: 60px;
+  background-color: #B2BEC3;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#task3 .right {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 60px;
+  height: 60px;
+  background-color: #B2BEC3;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#task3 .bottom {
+  position: absolute;
+  top: 60px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #D63031;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+#task3 .bottom .inner {
+  position: absolute;
+  top: 0px;
+  bottom: 60px;
+  left: 60px;
+  right: 60px;
+  background-color: white;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#task4 {
+  background: black;
+  display: inline-block;
+}
+
+#task4 .separator {
+  clear: both;
+  height: 3px;
+  margin: 0px 3px;
+  background: #8B0000;
+}
+
+#task4 .block {
+  margin: 3px;
+  background: #66320E;
+  width: 100px;
+  height: 100px;
+  float: left;
+}
