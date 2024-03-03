@@ -1,0 +1,147 @@
+html, body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.main-container {
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "h" "b" "s";
+  grid-template-rows: 60px 200px 60px;
+}
+
+.header-container {
+  grid-area: h;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #69758B;
+}
+
+.header-container .left-container {
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+  gap: 30px;
+}
+
+.header-container .left-container .menu-item {
+  display: flex;
+  gap: 10px;
+}
+
+.header-container .center-container {
+  color: #6BAAE8;
+}
+
+.header-container .right-container {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0px;
+  gap: 15px;
+}
+
+.header-container .right-container .input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #AAAAAA;
+  border-radius: 1000px;
+  padding: 0px 10px;
+  height: 30px;
+  gap: 10px;
+}
+
+.header-container .right-container .input input {
+  border: none;
+}
+
+.header-container .right-container .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 1000px;
+}
+
+.header-container .right-container .tweet {
+  width: 100px;
+  height: 30px;
+  border-radius: 1000px;
+  background: #62B6DF;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-container {
+  grid-area: b;
+  background: #62B6DF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.second-navigation-container {
+  grid-area: s;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.second-navigation-container .left-container {
+  display: flex;
+  align-items: center;
+}
+
+.second-navigation-container .left-container .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 1000px;
+  border: 5px solid white;
+}
+
+.second-navigation-container .left-container .statistics {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.second-navigation-container .left-container .statistics .statistics-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #69757F;
+  font-weight: bold;
+}
+
+.second-navigation-container .left-container .statistics .statistics-block .name {
+  font-size: 14px;
+}
+
+.second-navigation-container .left-container .statistics .statistics-block .value {
+  font-size: 18px;
+}
+
+.second-navigation-container .right-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.second-navigation-container .right-container .button {
+  width: 100px;
+  height: 30px;
+  border-radius: 1000px;
+  color: #62B6DF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #EFEFEF;
+  border: 2px solid #62B6DF;
+}
+
+.second-navigation-container .right-container .menu {
+  color: #69757F;
+}
