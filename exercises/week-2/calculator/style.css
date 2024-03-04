@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.calc-container {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  background: #151515;
+  box-sizing: border-box;
+  width: 390px;
+  height: 844px;
+  border-radius: 40px;
+  padding: 80px 19px 40px 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 50px;
+}
+
+.calc-container .main-container {
+  color: white;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calc-container .main-container .top-main-container .equation {
+  display: flex;
+  justify-content: end;
+  font-size: 48px;
+}
+
+.calc-container .main-container .bottom-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.calc-container .main-container .bottom-main-container .result {
+  display: flex;
+  justify-content: end;
+  color: #969696;
+  font-size: 48px;
+}
+
+.calc-container .main-container .bottom-main-container .actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calc-container .main-container .bottom-main-container .actions .actions-block {
+  display: flex;
+  gap: 30px;
+}
+
+.calc-container .main-container .bottom-main-container .actions .actions-block .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.calc-container .divider
+{
+  border-bottom: 1px solid #4E4D4D;
+  margin: 0px 0px;
+}
+
+.calc-container .buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calc-container .buttons-container ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calc-container .buttons-container ul li {
+  width: 73px;
+  height: 75px;
+  background: #343434;
+  border-radius: 9px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-container .buttons-container ul li.action {
+  color: #66FF7F;
+}
+
+.calc-container .buttons-container ul li.action.active {
+  background: #66FF7F;
+  color: #343434;
+}
+
+.calc-container .buttons-container ul li.reset {
+  background: #FF5959;
+  color: #343434;
+}
