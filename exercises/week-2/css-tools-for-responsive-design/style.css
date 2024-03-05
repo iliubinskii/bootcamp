@@ -1,0 +1,35 @@
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+#task1 img {
+  width: 100%;
+  height: auto;
+}
+
+#task2 {
+  font-size: 17px;
+}
+
+#task2 ul {
+  list-style-type: none;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#task2 ul li.expand-menu {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  #task2 ul li.menu-item:nth-child(3) ~ li.menu-item {
+    display: none;
+  }
+
+  #task2 ul li.expand-menu {
+    display: block;
+  }
+}
