@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="minecraft" class="minecraft">
+    <div class="navigation">
+      <div class="tools">
+        <div class="tool axe">
+          <img src="axe.png" alt="Axe">
+        </div>
+        <div class="tool pickaxe">
+          <img src="pickaxe.png" alt="Pickaxe">
+        </div>
+        <div class="tool shovel">
+          <img src="shovel.png" alt="Shovel">
+        </div>
+      </div>
+      <img class="reroll" src="reroll.png" alt="Reroll">
+      <div class="inventory">
+        <div class="slot tree">
+          <img src="tree.png" alt="Tree">
+          <div class="count">0</div>
+        </div>
+        <div class="slot rock">
+          <img src="rock.png" alt="Rock">
+          <div class="count">0</div>
+        </div>
+        <div class="slot dirt">
+          <img src="dirt.png" alt="Dirt">
+          <div class="count">0</div>
+        </div>
+      </div>
+    </div>
+    <div class="landscape">
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    const minecraft = new Minecraft();
+
+    minecraft.mount("#minecraft");
+  </script>
+</body>
+
+</html>

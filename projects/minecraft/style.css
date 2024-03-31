@@ -1,0 +1,98 @@
+body {
+  background: #E0E0E0;
+  margin: 0px;
+  padding: 20px;
+}
+
+.minecraft {
+  margin: 0px auto;
+  width: 640px;
+  height: 360px;
+  background: #FFFFFF;
+  background-image: url("background.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.minecraft .navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+}
+.minecraft .navigation .inventory {
+  display: flex;
+  gap: 2px;
+}
+.minecraft .navigation .inventory .slot {
+  position: relative;
+  border: 2px solid #888888;
+  padding: 2px;
+  background: #D0D0D0;
+  cursor: pointer;
+}
+.minecraft .navigation .inventory .slot.selected {
+  background: #C0C0FF;
+}
+.minecraft .navigation .inventory .slot img {
+  width: 50px;
+  height: 50px;
+}
+.minecraft .navigation .inventory .slot .count {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+.minecraft .navigation .reroll {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+.minecraft .navigation .tools {
+  display: flex;
+  gap: 2px;
+}
+.minecraft .navigation .tools .tool {
+  border: 2px solid #888888;
+  padding: 2px;
+  background: #D0D0D0;
+  cursor: pointer;
+}
+.minecraft .navigation .tools .tool.selected {
+  background: #C0C0FF;
+}
+.minecraft .navigation .tools .tool img {
+  width: 50px;
+  height: 50px;
+}
+.minecraft .landscape {
+  display: flex;
+}
+.minecraft .landscape .point {
+  flex: 1;
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+.minecraft .landscape .point.dirt {
+  background-image: url("dirt.png");
+}
+.minecraft .landscape .point.rock {
+  background-image: url("rock.png");
+}
+.minecraft .landscape .point.tree {
+  background-image: url("tree.png");
+}/*# sourceMappingURL=style.css.map */
