@@ -21,7 +21,6 @@ export function getRandomuserAuthorsProvider(results, seed) {
          */
         user => ({
           dateOfBirth: format(user.dob.date, "d MMM yyyy"),
-          email: user.email,
           id: user.login.uuid,
           name: `${user.name.first} ${user.name.last}`
         })

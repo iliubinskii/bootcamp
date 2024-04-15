@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 export interface Author {
   dateOfBirth: string;
-  email: string;
   id: string;
   name: string;
 }
