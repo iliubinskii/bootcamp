@@ -2,10 +2,10 @@ import { faker } from "@faker-js/faker";
 import { v4 as uuidv4 } from "uuid";
 
 /**
- * @param {import("./books/types.d.ts").BooksProvider} booksProvider
+ * @param {import("./books/types.d.ts").BooksService} booksService
  * @param {import("./authors/types.d.ts").AuthorsProvider} authorsProvider
  */
-export async function booksFaker(booksProvider, authorsProvider) {
+export async function booksFaker(booksService, authorsProvider) {
   const authors = await authorsProvider.getAuthors();
 
   /**
@@ -23,7 +23,7 @@ export async function booksFaker(booksProvider, authorsProvider) {
     })
   }));
 
-  await Promise.all(books.map(async book => await booksProvider.addBook(book)));
+  await Promise.all(books.map(async book => await booksService.addBook(book)));
 }
 
 const bookNames = [

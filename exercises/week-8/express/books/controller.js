@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
 
 /**
- * @param {import("./types.js").BooksProvider} booksProvider
+ * @param {import("./types.js").BooksService} booksService
  * @param {(id: string) => Promise<boolean>} authorExists
  * @returns {import("./types.js").BookControllers}
  */
-export function getBookControllers(booksProvider, authorExists) {
+export function getBookControllers(booksService, authorExists) {
   return {
     addBook: async (req, res) => {
       /**
@@ -33,7 +33,7 @@ export function getBookControllers(booksProvider, authorExists) {
           if (author) {
             const { name, price, authorId } = book;
 
-            const success = await booksProvider.addBook({
+            const success = await booksService.addBook({
               authorId,
               name,
               price,
@@ -47,7 +47,7 @@ export function getBookControllers(booksProvider, authorExists) {
       } else res.status(400).send("Invalid book data");
     },
     getBooks: async (_req, res) => {
-      const books = await booksProvider.getBooks();
+      const books = await booksService.getBooks();
 
       res.json(books);
     }

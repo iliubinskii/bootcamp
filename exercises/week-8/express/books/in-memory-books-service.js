@@ -1,7 +1,7 @@
 /**
- * @returns {import("./types.js").BooksProvider}
+ * @returns {import("./types.js").BooksService}
  */
-export function getInMemoryBooksProvider() {
+export function getInMemoryBooksService() {
   /**
    * @type {import("./types.js").Books}
    */

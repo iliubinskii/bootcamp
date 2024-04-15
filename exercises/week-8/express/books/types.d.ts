@@ -9,7 +9,7 @@ export interface Book {
 
 export type Books = Book[];
 
-export interface BooksProvider {
+export interface BooksService {
   addBook: (book: Book) => Promise<boolean>;
   getBooks: () => Promise<Books>;
 }

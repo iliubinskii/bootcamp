@@ -8,7 +8,7 @@ import { booksFaker } from "./faker.js";
 import express from "express";
 import { getBookControllers } from "./books/controller.js";
 import { getBookRoutes } from "./books/routes.js";
-import { getInMemoryBooksProvider } from "./books/in-memory-books-service.js";
+import { getInMemoryBooksService } from "./books/in-memory-books-service.js";
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises -- Ok
 main();
@@ -19,9 +19,9 @@ async function main() {
     RANDOMUSER_SEED
   );
 
-  const inMemoryBooksProvider = getInMemoryBooksProvider();
+  const inMemoryBooksService = getInMemoryBooksService();
 
-  await booksFaker(inMemoryBooksProvider, authorsProvider);
+  await booksFaker(inMemoryBooksService, authorsProvider);
 
   const app = express();
 
@@ -44,7 +44,7 @@ async function main() {
   app.use(
     "/books/in-memory",
     getBookRoutes(
-      getBookControllers(inMemoryBooksProvider, async id => {
+      getBookControllers(inMemoryBooksService, async id => {
         const author = await authorsProvider.getAuthor(id);
 
         return typeof author === "object";
