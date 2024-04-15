@@ -5,6 +5,9 @@ import {
   getRandomuserAuthorsProvider
 } from "./authors/index.js";
 import express from "express";
+import { getBookControllers } from "./books/controller.js";
+import { getBookRoutes } from "./books/routes.js";
+import { getInMemoryBooksProvider } from "./books/in-memory-books-service.js";
 
 const app = express();
 
@@ -24,6 +27,11 @@ app.use(
       getRandomuserAuthorsProvider(RANDOMUSER_RESULTS, RANDOMUSER_SEED)
     )
   )
+);
+
+app.use(
+  "/books/in-memory",
+  getBookRoutes(getBookControllers(getInMemoryBooksProvider()))
 );
 
 app.listen(APP_PORT, () => {
