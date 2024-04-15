@@ -43,7 +43,13 @@ async function main() {
 
   app.use(
     "/books/in-memory",
-    getBookRoutes(getBookControllers(inMemoryBooksProvider))
+    getBookRoutes(
+      getBookControllers(inMemoryBooksProvider, async id => {
+        const author = await authorsProvider.getAuthor(id);
+
+        return typeof author === "object";
+      })
+    )
   );
 
   app.listen(APP_PORT, () => {
