@@ -9,7 +9,9 @@ import express from "express";
 export function getAuthorRoutes(authorControllers) {
   const authorRoutes = express.Router();
 
-  authorRoutes.get("/", authorControllers.getAuthors);
+  authorRoutes
+    .get("/", authorControllers.getAuthors)
+    .get("/:id", authorControllers.getAuthor);
 
   return authorRoutes;
 }
