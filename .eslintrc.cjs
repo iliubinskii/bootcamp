@@ -62,6 +62,7 @@ module.exports = {
           "aviv",
           "axios",
           "commonjs",
+          "dec",
           "ecma",
           "eee",
           "favicons",
