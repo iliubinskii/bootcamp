@@ -1,10 +1,55 @@
 {
   "name": "bootcamp",
   "version": "0.1.0",
+  "description": "ITWorks Elevation bootcamp",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iliubinskii/bootcamp"
+  },
+  "license": "ISC",
+  "author": "Ilia Liubinskii",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "format": "prettier --write \"**/*.css\" \"**/*.html\"",
+    "install-deps": "npm install --strict-peer-deps",
+    "install-dev-deps": "npm install --save-dev --strict-peer-deps",
+    "lint": "eslint --fix --max-warnings=0 .",
+    "lint-style": "stylelint --fix --max-warnings=0 src/**/*.{css,scss}",
+    "start-week-8-express": "nodemon exercises/week-8/express/index.js",
+    "test": "jest",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "express": "^4.19.2",
+    "node-json-db": "^2.3.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.0.0",
+    "@jest/globals": "^29.7.0",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "axios": "1.6.8",
+    "date-fns": "3.6.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-sort-imports-requires": "^1.0.2",
+    "eslint-plugin-spellcheck": "^0.0.20",
+    "globals": "^15.0.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "prettier": "3.2.5",
+    "stylelint": "^16.3.1",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5.4.5"
   }
 }
