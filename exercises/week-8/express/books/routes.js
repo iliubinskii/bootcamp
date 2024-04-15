@@ -9,7 +9,9 @@ import express from "express";
 export function getBookRoutes(bookControllers) {
   const bookRoutes = express.Router();
 
-  bookRoutes.get("/", bookControllers.getBooks);
+  bookRoutes
+    .get("/", bookControllers.getBooks)
+    .post("/", bookControllers.addBook);
 
   return bookRoutes;
 }
