@@ -82,8 +82,8 @@ async function main() {
     getBookRoutes(getBookControllers(mongodbBooksService), authorExists)
   );
 
-  app.get("*", (_req, res) => {
-    res.status(404).json({ error: "404 Not Found" });
+  app.get("/health", (_req, res) => {
+    res.status(200).send("Server is running!");
   });
 
   app.get("/sync-reject", () => {
@@ -107,6 +107,10 @@ async function main() {
       }
     }
   );
+
+  app.get("*", (_req, res) => {
+    res.status(404).json({ error: "404 Not Found" });
+  });
 
   app.use(
     /**
