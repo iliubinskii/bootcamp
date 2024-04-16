@@ -19,3 +19,13 @@ export function assertNotNull(value) {
 
   return value;
 }
+
+/**
+ * @param {number} delayMs
+ * @returns {Promise<void>}
+ */
+export function delay(delayMs) {
+  return new Promise(resolve => {
+    setTimeout(resolve, delayMs);
+  });
+}
