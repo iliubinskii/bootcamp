@@ -1,3 +1,4 @@
+import { FAKER_BOOK_NAMES } from "./consts.js";
 import { faker } from "@faker-js/faker";
 import { v4 as uuidv4 } from "uuid";
 
@@ -5,13 +6,17 @@ import { v4 as uuidv4 } from "uuid";
  * @param {import("./books/types.d.ts").BooksService} booksService
  * @param {import("./authors/types.d.ts").AuthorsService} authorsService
  */
-export async function booksFaker(booksService, authorsService) {
+export async function booksFaker(
+  booksService,
+  authorsService,
+  count = FAKER_BOOK_NAMES.length
+) {
   const authors = await authorsService.getAuthors();
 
   /**
    * @type {import("./books/types.js").Books}
    */
-  const books = bookNames.map(name => ({
+  const books = FAKER_BOOK_NAMES.slice(0, count).map(name => ({
     authorId: faker.helpers.arrayElement(authors).id,
     id: uuidv4(),
     name,
@@ -25,16 +30,3 @@ export async function booksFaker(booksService, authorsService) {
 
   await Promise.all(books.map(async book => await booksService.addBook(book)));
 }
-
-const bookNames = [
-  "Harry Potter",
-  "The Lord of the Rings",
-  "The Hobbit",
-  "The Catcher in the Rye",
-  "The Great Gatsby",
-  "To Kill a Mockingbird",
-  "Pride and Prejudice",
-  "Jane Eyre",
-  "Frankenstein",
-  "Dracula"
-];
