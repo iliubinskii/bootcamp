@@ -83,7 +83,8 @@ module.exports = {
           "subdomain",
           "tsconfig",
           "typeof",
-          "uuidv4"
+          "uuidv4",
+          "zod"
         ],
         "minLength": 3
       }
