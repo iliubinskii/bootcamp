@@ -20,6 +20,8 @@ import {
 } from "./books/index.js";
 import { booksFaker } from "./faker.js";
 import express from "express";
+import fs from "fs";
+import path from "path";
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises -- Ok
 main();
@@ -42,21 +44,13 @@ async function main() {
   const app = express();
 
   app.get("/", (_req, res) => {
-    res.json({
-      "/": "Man page",
-      "/authors": {
-        "/": "The list of authors",
-        "/:id": "The author details"
-      },
-      "/books/in-memory": {
-        "/": "The list of books",
-        "/:id": "The book details"
-      },
-      "/books/json-db": {
-        "/": "The list of books",
-        "/:id": "The book details"
-      }
-    });
+    const dataBuffer = fs.readFileSync(
+      path.join(import.meta.dirname, "postman.json")
+    );
+
+    const dataStr = dataBuffer.toString();
+
+    res.json(JSON.parse(dataStr));
   });
 
   app.use("/authors", getAuthorRoutes(getAuthorControllers(authorsService)));
