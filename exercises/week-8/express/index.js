@@ -76,6 +76,10 @@ async function main() {
     getBookRoutes(getBookControllers(jsonDbBooksService), authorExists)
   );
 
+  app.get("*", (_req, res) => {
+    res.status(404).json({ error: "404 Not Found" });
+  });
+
   app.get("/sync-reject", () => {
     throw Error("Sync error demo!");
   });
