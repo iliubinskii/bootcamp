@@ -72,9 +72,11 @@ module.exports = {
           "jsx",
           "keyof",
           "lang",
+          "logform",
           "minecraft",
           "mongodb",
           "parens",
+          "printf",
           "randomuser",
           "readonly",
           "req",
@@ -82,8 +84,10 @@ module.exports = {
           "str",
           "subdomain",
           "tsconfig",
+          "txt",
           "typeof",
           "uuidv4",
+          "winston",
           "zod"
         ],
         "minLength": 3

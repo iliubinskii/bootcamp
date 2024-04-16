@@ -6,14 +6,18 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import rateLimit from "express-rate-limit";
+import { requestId } from "./request-id/index.js";
 
 /**
  * @param {number} port
  * @param {import("./authors/types.js").AuthorsService} authorsService
  * @param {import("./books/types.js").BooksService} booksService
+ * @param {import("winston").Logger} logger
  */
-export async function createApp(port, authorsService, booksService) {
+export async function createApp(port, authorsService, booksService, logger) {
   const app = express();
+
+  app.use(requestId);
 
   app.use(
     rateLimit({
@@ -74,19 +78,23 @@ export async function createApp(port, authorsService, booksService) {
   app.use(
     /**
      * @param {Error} err
-     * @param {express.Request} _req
+     * @param {express.Request} req
      * @param {express.Response} res
      * @param {express.NextFunction} next
      */
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Ok
+    // @ts-expect-error
     // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Ok
-    (err, _req, res, next) => {
+    (err, req, res, next) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Ok
+      // @ts-expect-error
+      logger.error(err, { requestId: req.customRequestId });
       res.status(500).json({ message: err.message });
-      next();
     }
   );
 
   app.listen(port, () => {
-    console.info(`Server is listening on port ${port}`);
+    logger.info("Server started");
   });
 
   /**

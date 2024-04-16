@@ -29,6 +29,10 @@ export const JSON_DB_PATH = {
   books: "/books"
 };
 
+export const LOGGER_FILE = "../.bootcamp/exercises/week-8/express/log.txt";
+
+export const LOGGER_LOG_LEVEL = "info";
+
 export const MONGODB_DB_NAME = "week-8-express";
 
 export const MONGODB_ENDPOINT = assertDefined(parsed["MONGODB_ENDPOINT"]);
