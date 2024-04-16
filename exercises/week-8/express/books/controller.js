@@ -34,18 +34,18 @@ export function getBookControllers(booksService, authorExists) {
           const success = await booksService.addBook(book);
 
           if (success) res.status(201).json(book);
-          else res.status(409).send("Book already exists");
-        } else res.status(400).send("Author not found");
-      } else res.status(400).send("Invalid book data");
+          else res.status(409).json({ error: "Book already exists" });
+        } else res.status(409).json({ error: "Author not found" });
+      } else res.status(400).json({ error: "Invalid book data" });
     },
     deleteBook: async (req, res) => {
       const id = req.params["id"];
 
       if (typeof id === "string" && id.length) {
-        await booksService.deleteBook(id);
+        const affectedRows = await booksService.deleteBook(id);
 
-        res.status(204).send();
-      } else res.status(400).send("Missing book id");
+        res.status(200).send({ affectedRows });
+      } else res.status(400).json({ error: "Missing book id" });
     },
     getBook: async (req, res) => {
       const id = req.params["id"];
@@ -95,10 +95,10 @@ export function getBookControllers(booksService, authorExists) {
             const success = await booksService.updateBook(book);
 
             if (success) res.status(200).json(book);
-            else res.status(404).send("Book not found");
-          } else res.status(400).send("Author not found");
-        } else res.status(400).send("Invalid book data");
-      } else res.status(400).send("Missing book id");
+            else res.status(404).json({ error: "Book not found" });
+          } else res.status(409).json({ error: "Author not found" });
+        } else res.status(400).json({ error: "Invalid book data" });
+      } else res.status(400).json({ error: "Missing book id" });
     }
   };
 }

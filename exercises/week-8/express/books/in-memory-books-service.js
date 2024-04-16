@@ -26,7 +26,11 @@ export async function getInMemoryBooksService(onDbCreated = async () => {}) {
     deleteBook: async id => {
       const index = books.findIndex(candidate => candidate.id === id);
 
-      if (index !== -1) books.splice(index, 1);
+      if (index === -1) return 0;
+
+      books.splice(index, 1);
+
+      return 1;
     },
     getBook: async id => books.find(candidate => candidate.id === id),
     getBooks: async () => books,

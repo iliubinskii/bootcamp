@@ -31,7 +31,11 @@ export async function getJsonDbBooksService(
     deleteBook: async id => {
       const index = await db.getIndex(path, "id", id);
 
-      if (index !== -1) await db.delete(`${path}[${index}]`);
+      if (index === -1) return 0;
+
+      await db.delete(`${path}[${index}]`);
+
+      return 1;
     },
     getBook: async id => {
       const index = await db.getIndex(path, "id", id);

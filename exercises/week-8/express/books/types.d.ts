@@ -11,7 +11,7 @@ export type Books = Book[];
 
 export interface BooksService {
   addBook: (book: Book) => Promise<boolean>;
-  deleteBook: (id: string) => Promise<void>;
+  deleteBook: (id: string) => Promise<number>;
   updateBook: (book: Book) => Promise<boolean>;
   getBook: (id: string) => Promise<Book | undefined>;
   getBooks: () => Promise<Books>;
