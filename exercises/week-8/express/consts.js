@@ -3,7 +3,11 @@ import config from "dotenv";
 
 const parsed = assertDefined(config.config().parsed);
 
-export const APP_PORT = 3000;
+export const APP_PORT = {
+  inMemory: 3001,
+  jsonDb: 3002,
+  mongodb: 3000
+};
 
 export const FAKER_BOOK_NAMES = [
   "Harry Potter",

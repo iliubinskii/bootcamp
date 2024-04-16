@@ -5,145 +5,45 @@ import {
   MONGODB_DB_NAME,
   MONGODB_ENDPOINT,
   RANDOMUSER_RESULTS,
-  RANDOMUSER_SEED,
-  RATE_LIMIT_MAX,
-  RATE_LIMIT_WINDOW_MS
+  RANDOMUSER_SEED
 } from "./consts.js";
 import {
-  getAuthorControllers,
-  getAuthorRoutes,
-  getRandomuserAuthorsProvider
-} from "./authors/index.js";
-import {
-  getBookControllers,
-  getBookRoutes,
   getInMemoryBooksService,
   getJsonDbBooksService,
   getMongodbBooksService
 } from "./books/index.js";
 import { booksFaker } from "./faker.js";
-import { delay } from "./utils.js";
-import express from "express";
-import fs from "fs";
-import path from "path";
-import rateLimit from "express-rate-limit";
+import { createApp } from "./app.js";
+import { getRandomuserAuthorsProvider } from "./authors/index.js";
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises -- Ok
-main();
+const authorsService = getRandomuserAuthorsProvider(
+  RANDOMUSER_RESULTS,
+  RANDOMUSER_SEED
+);
 
-async function main() {
-  const authorsService = getRandomuserAuthorsProvider(
-    RANDOMUSER_RESULTS,
-    RANDOMUSER_SEED
-  );
+Promise.all([
+  createApp(
+    APP_PORT.inMemory,
+    authorsService,
+    await getInMemoryBooksService(addBooks)
+  ),
+  createApp(
+    APP_PORT.jsonDb,
+    authorsService,
+    await getJsonDbBooksService(JSON_DB_FILE, JSON_DB_PATH.books, addBooks)
+  ),
+  createApp(
+    APP_PORT.mongodb,
+    authorsService,
+    await getMongodbBooksService(MONGODB_ENDPOINT, MONGODB_DB_NAME, addBooks)
+  )
+]).catch(error => {
+  console.error(error);
+});
 
-  const [inMemoryBooksService, jsonDbBooksService, mongodbBooksService] =
-    await Promise.all([
-      getInMemoryBooksService(addBooks),
-      getJsonDbBooksService(JSON_DB_FILE, JSON_DB_PATH.books, addBooks),
-      getMongodbBooksService(MONGODB_ENDPOINT, MONGODB_DB_NAME, addBooks)
-    ]);
-
-  const app = express();
-
-  app.use(
-    rateLimit({
-      windowMs: RATE_LIMIT_WINDOW_MS,
-      max: RATE_LIMIT_MAX
-    })
-  );
-
-  app.use(express.json());
-
-  app.get("/", (_req, res) => {
-    const dataBuffer = fs.readFileSync(
-      path.join(import.meta.dirname, "postman.json")
-    );
-
-    const dataStr = dataBuffer.toString();
-
-    res.json(JSON.parse(dataStr));
-  });
-
-  app.use("/authors", getAuthorRoutes(getAuthorControllers(authorsService)));
-
-  app.use(
-    "/books/in-memory",
-    getBookRoutes(getBookControllers(inMemoryBooksService), authorExists)
-  );
-
-  app.use(
-    "/books/json-db",
-    getBookRoutes(getBookControllers(jsonDbBooksService), authorExists)
-  );
-
-  app.use(
-    "/books/mongodb",
-    getBookRoutes(getBookControllers(mongodbBooksService), authorExists)
-  );
-
-  app.get("/health", (_req, res) => {
-    res.status(200).send("Server is running!");
-  });
-
-  app.get("/sync-reject", () => {
-    throw Error("Sync error demo!");
-  });
-
-  app.get(
-    "/async-reject",
-    /**
-     * @param {express.Request} _req
-     * @param {express.Response} _res
-     * @param {express.NextFunction} next
-     */
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises -- Ok
-    async (_req, _res, next) => {
-      try {
-        await delay(100);
-        throw Error("Async error demo!");
-      } catch (err) {
-        next(err);
-      }
-    }
-  );
-
-  app.get("*", (_req, res) => {
-    res.status(404).json({ error: "404 Not Found" });
-  });
-
-  app.use(
-    /**
-     * @param {Error} err
-     * @param {express.Request} _req
-     * @param {express.Response} res
-     * @param {express.NextFunction} next
-     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Ok
-    (err, _req, res, next) => {
-      res.status(500).json({ message: err.message });
-      next();
-    }
-  );
-
-  app.listen(APP_PORT, () => {
-    console.info(`Server is listening on port ${APP_PORT}`);
-  });
-
-  /**
-   * @param {import("./books/types.js").BooksService} service
-   */
-  async function addBooks(service) {
-    await booksFaker(service, authorsService);
-  }
-
-  /**
-   * @param {string} id
-   * @returns {Promise<boolean>}
-   */
-  async function authorExists(id) {
-    const author = await authorsService.getAuthor(id);
-
-    return Boolean(author);
-  }
+/**
+ * @param {import("./books/types.js").BooksService} service
+ */
+async function addBooks(service) {
+  await booksFaker(service, authorsService);
 }

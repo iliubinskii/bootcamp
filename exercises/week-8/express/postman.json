@@ -98,10 +98,9 @@
                 "{{apiUrl}}"
               ],
               "path": [
-                "books",
-                "{{booksService}}"
+                "books"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}"
+              "raw": "{{apiUrl}}/books"
             }
           },
           "response": []
@@ -117,10 +116,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "f984f4bd-cde0-5656-7632-6e5d329aff6a"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/f984f4bd-cde0-5656-7632-6e5d329aff6a"
+              "raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a"
             }
           },
           "response": []
@@ -136,10 +134,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "abc"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/abc"
+              "raw": "{{apiUrl}}/books/abc"
             }
           },
           "response": []
@@ -164,10 +161,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "f984f4bd-cde0-5656-7632-6e5d329aff6a"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/f984f4bd-cde0-5656-7632-6e5d329aff6a"
+              "raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a"
             }
           },
           "response": []
@@ -192,10 +188,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "f984f4bd-cde0-5656-7632-6e5d329aff6a"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/f984f4bd-cde0-5656-7632-6e5d329aff6a"
+              "raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a"
             }
           },
           "response": []
@@ -220,10 +215,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "f984f4bd-cde0-5656-7632-6e5d329aff6a"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/f984f4bd-cde0-5656-7632-6e5d329aff6a"
+              "raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a"
             }
           },
           "response": []
@@ -248,10 +242,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "f984f4bd-cde0-5656-7632-6e5d329aff6a"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/f984f4bd-cde0-5656-7632-6e5d329aff6a"
+              "raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a"
             }
           },
           "response": []
@@ -276,10 +269,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "abc"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/abc"
+              "raw": "{{apiUrl}}/books/abc"
             }
           },
           "response": []
@@ -303,10 +295,9 @@
                 "{{apiUrl}}"
               ],
               "path": [
-                "books",
-                "{{booksService}}"
+                "books"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}"
+              "raw": "{{apiUrl}}/books"
             }
           },
           "response": []
@@ -330,10 +321,9 @@
                 "{{apiUrl}}"
               ],
               "path": [
-                "books",
-                "{{booksService}}"
+                "books"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}"
+              "raw": "{{apiUrl}}/books"
             }
           },
           "response": []
@@ -357,10 +347,9 @@
                 "{{apiUrl}}"
               ],
               "path": [
-                "books",
-                "{{booksService}}"
+                "books"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}"
+              "raw": "{{apiUrl}}/books"
             }
           },
           "response": []
@@ -376,10 +365,9 @@
               ],
               "path": [
                 "books",
-                "{{booksService}}",
                 "ff8d72d1-b573-5b33-b1f5-32519c42a516"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/ff8d72d1-b573-5b33-b1f5-32519c42a516"
+              "raw": "{{apiUrl}}/books/ff8d72d1-b573-5b33-b1f5-32519c42a516"
             }
           },
           "response": []
@@ -403,6 +391,74 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "Health",
+      "request": {
+        "header": [],
+        "method": "GET",
+        "url": {
+          "host": [
+            "{{apiUrl}}"
+          ],
+          "path": [
+            "health"
+          ],
+          "raw": "{{apiUrl}}/health"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sync Reject",
+      "request": {
+        "header": [],
+        "method": "GET",
+        "url": {
+          "host": [
+            "{{apiUrl}}"
+          ],
+          "path": [
+            "sync-reject"
+          ],
+          "raw": "{{apiUrl}}/sync-reject"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Async Reject",
+      "request": {
+        "header": [],
+        "method": "GET",
+        "url": {
+          "host": [
+            "{{apiUrl}}"
+          ],
+          "path": [
+            "async-reject"
+          ],
+          "raw": "{{apiUrl}}/async-reject"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Not Found",
+      "request": {
+        "header": [],
+        "method": "GET",
+        "url": {
+          "host": [
+            "{{apiUrl}}"
+          ],
+          "path": [
+            "abc"
+          ],
+          "raw": "{{apiUrl}}/abc"
+        }
+      },
+      "response": []
     }
   ],
   "variable": [
@@ -410,10 +466,6 @@
       "type": "string",
       "key": "apiUrl",
       "value": "http://localhost:3000"
-    },
-    {
-      "key": "booksService",
-      "value": "in-memory"
     }
   ]
 }
