@@ -19,6 +19,7 @@ import {
   getJsonDbBooksService
 } from "./books/index.js";
 import { booksFaker } from "./faker.js";
+import { delay } from "./utils.js";
 import express from "express";
 import fs from "fs";
 import path from "path";
@@ -73,6 +74,42 @@ async function main() {
   app.use(
     "/books/json-db",
     getBookRoutes(getBookControllers(jsonDbBooksService), authorExists)
+  );
+
+  app.get("/sync-reject", () => {
+    throw Error("Sync error demo!");
+  });
+
+  app.get(
+    "/async-reject",
+    /**
+     * @param {express.Request} _req
+     * @param {express.Response} _res
+     * @param {express.NextFunction} next
+     */
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises -- Ok
+    async (_req, _res, next) => {
+      try {
+        await delay(100);
+        throw Error("Async error demo!");
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
+
+  app.use(
+    /**
+     * @param {Error} err
+     * @param {express.Request} _req
+     * @param {express.Response} res
+     * @param {express.NextFunction} next
+     */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Ok
+    (err, _req, res, next) => {
+      res.status(500).json({ message: err.message });
+      next();
+    }
   );
 
   app.listen(APP_PORT, () => {
