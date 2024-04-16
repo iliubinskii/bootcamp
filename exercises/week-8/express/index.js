@@ -2,6 +2,7 @@ import {
   APP_PORT,
   JSON_DB_FILE,
   JSON_DB_PATH,
+  MONGODB_ENDPOINT,
   RANDOMUSER_RESULTS,
   RANDOMUSER_SEED,
   RATE_LIMIT_MAX,
@@ -16,7 +17,8 @@ import {
   getBookControllers,
   getBookRoutes,
   getInMemoryBooksService,
-  getJsonDbBooksService
+  getJsonDbBooksService,
+  getMongodbBooksService
 } from "./books/index.js";
 import { booksFaker } from "./faker.js";
 import { delay } from "./utils.js";
@@ -34,14 +36,12 @@ async function main() {
     RANDOMUSER_SEED
   );
 
-  const [inMemoryBooksService, jsonDbBooksService] = await Promise.all([
-    getInMemoryBooksService(async service => {
-      await booksFaker(service, authorsService);
-    }),
-    getJsonDbBooksService(JSON_DB_FILE, JSON_DB_PATH.books, async service => {
-      await booksFaker(service, authorsService);
-    })
-  ]);
+  const [inMemoryBooksService, jsonDbBooksService, mongodbBooksService] =
+    await Promise.all([
+      getInMemoryBooksService(addBooks),
+      getJsonDbBooksService(JSON_DB_FILE, JSON_DB_PATH.books, addBooks),
+      getMongodbBooksService(MONGODB_ENDPOINT, addBooks)
+    ]);
 
   const app = express();
 
@@ -74,6 +74,11 @@ async function main() {
   app.use(
     "/books/json-db",
     getBookRoutes(getBookControllers(jsonDbBooksService), authorExists)
+  );
+
+  app.use(
+    "/books/mongodb",
+    getBookRoutes(getBookControllers(mongodbBooksService), authorExists)
   );
 
   app.get("*", (_req, res) => {
@@ -119,6 +124,13 @@ async function main() {
   app.listen(APP_PORT, () => {
     console.info(`Server is listening on port ${APP_PORT}`);
   });
+
+  /**
+   * @param {import("./books/types.js").BooksService} service
+   */
+  async function addBooks(service) {
+    await booksFaker(service, authorsService);
+  }
 
   /**
    * @param {string} id

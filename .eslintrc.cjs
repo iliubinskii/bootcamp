@@ -73,6 +73,7 @@ module.exports = {
           "keyof",
           "lang",
           "minecraft",
+          "mongodb",
           "parens",
           "randomuser",
           "readonly",

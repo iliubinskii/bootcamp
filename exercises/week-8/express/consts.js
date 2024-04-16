@@ -1,3 +1,8 @@
+import { assertDefined } from "./utils.js";
+import config from "dotenv";
+
+const parsed = assertDefined(config.config().parsed);
+
 export const APP_PORT = 3000;
 
 export const FAKER_BOOK_NAMES = [
@@ -19,6 +24,8 @@ export const JSON_DB_FILE =
 export const JSON_DB_PATH = {
   books: "/books"
 };
+
+export const MONGODB_ENDPOINT = assertDefined(parsed["MONGODB_ENDPOINT"]);
 
 export const RANDOMUSER_RESULTS = 10;
 
