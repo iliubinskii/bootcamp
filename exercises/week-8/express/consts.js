@@ -15,7 +15,8 @@ export const FAKER_BOOK_NAMES = [
 
 export const IN_MEMORY_INITIAL_BOOKS_COUNT = undefined;
 
-export const JSON_DB_FILE = "json-db.json";
+export const JSON_DB_FILE =
+  "../.bootcamp/exercises/week-8/express/json-db.json";
 
 export const JSON_DB_INITIAL_BOOKS_COUNT = 3;
 

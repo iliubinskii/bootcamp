@@ -1,6 +1,6 @@
 import { FAKER_BOOK_NAMES } from "./consts.js";
+import crypto from "crypto";
 import { faker } from "@faker-js/faker";
-import { v4 as uuidv4 } from "uuid";
 
 /**
  * @param {import("./books/types.d.ts").BooksService} booksService
@@ -18,7 +18,7 @@ export async function booksFaker(
    */
   const books = FAKER_BOOK_NAMES.slice(0, count).map(name => ({
     authorId: faker.helpers.arrayElement(authors).id,
-    id: uuidv4(),
+    id: uuidFaker(name),
     name,
     price: faker.finance.amount({
       dec: 0,
@@ -29,4 +29,16 @@ export async function booksFaker(
   }));
 
   await Promise.all(books.map(async book => await booksService.addBook(book)));
+}
+
+/**
+ * @param {string} str
+ * @returns {string}
+ */
+function uuidFaker(str) {
+  const hash = crypto.createHash("sha256").update(str).digest("hex");
+
+  const uuidLike = `${hash.substring(0, 8)}-${hash.substring(8, 12)}-5${hash.substring(13, 16)}-${hash.substring(16, 20)}-${hash.substring(20, 32)}`;
+
+  return uuidLike;
 }

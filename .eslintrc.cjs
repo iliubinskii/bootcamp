@@ -61,6 +61,7 @@ module.exports = {
           "autofix",
           "aviv",
           "axios",
+          "bootcamp",
           "commonjs",
           "dec",
           "ecma",
