@@ -14,14 +14,14 @@ import { getInMemoryBooksService } from "./books/in-memory-books-service.js";
 main();
 
 async function main() {
-  const authorsProvider = getRandomuserAuthorsProvider(
+  const authorsService = getRandomuserAuthorsProvider(
     RANDOMUSER_RESULTS,
     RANDOMUSER_SEED
   );
 
   const inMemoryBooksService = getInMemoryBooksService();
 
-  await booksFaker(inMemoryBooksService, authorsProvider);
+  await booksFaker(inMemoryBooksService, authorsService);
 
   const app = express();
 
@@ -39,13 +39,13 @@ async function main() {
     });
   });
 
-  app.use("/authors", getAuthorRoutes(getAuthorControllers(authorsProvider)));
+  app.use("/authors", getAuthorRoutes(getAuthorControllers(authorsService)));
 
   app.use(
     "/books/in-memory",
     getBookRoutes(
       getBookControllers(inMemoryBooksService, async id => {
-        const author = await authorsProvider.getAuthor(id);
+        const author = await authorsService.getAuthor(id);
 
         return typeof author === "object";
       })

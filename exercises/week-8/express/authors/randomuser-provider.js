@@ -3,7 +3,7 @@ import { format } from "date-fns";
 /**
  * @param {number} results
  * @param {string} seed
- * @returns {import("./types.js").AuthorsProvider}
+ * @returns {import("./types.js").AuthorsService}
  */
 export function getRandomuserAuthorsProvider(results, seed) {
   return {

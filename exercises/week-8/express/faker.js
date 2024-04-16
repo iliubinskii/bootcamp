@@ -3,10 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 
 /**
  * @param {import("./books/types.d.ts").BooksService} booksService
- * @param {import("./authors/types.d.ts").AuthorsProvider} authorsProvider
+ * @param {import("./authors/types.d.ts").AuthorsService} authorsService
  */
-export async function booksFaker(booksService, authorsProvider) {
-  const authors = await authorsProvider.getAuthors();
+export async function booksFaker(booksService, authorsService) {
+  const authors = await authorsService.getAuthors();
 
   /**
    * @type {import("./books/types.js").Books}

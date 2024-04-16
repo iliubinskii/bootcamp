@@ -8,7 +8,7 @@ export interface Author {
 
 export type Authors = Author[];
 
-export interface AuthorsProvider {
+export interface AuthorsService {
   getAuthor: (id: string) => Promise<Author | undefined>;
   getAuthors: () => Promise<Authors>;
 }
