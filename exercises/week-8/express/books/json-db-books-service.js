@@ -3,12 +3,20 @@ import { Config, JsonDB } from "node-json-db";
 /**
  * @param {string} file
  * @param {string} path
- * @returns {import("./types.js").BooksService}
+ * @param {(service: import("./types.js").BooksService) => Promise<void>} onDbCreated
+ * @returns {Promise<import("./types.js").BooksService>}
  */
-export function getJsonDbBooksService(file, path) {
+export async function getJsonDbBooksService(
+  file,
+  path,
+  onDbCreated = async () => {}
+) {
   var db = new JsonDB(new Config(file, true, true, "/"));
 
-  return {
+  /**
+   * @type {import("./types.js").BooksService}
+   */
+  const service = {
     addBook: async book => {
       const index = await db.getIndex(path, "id", book.id);
 
@@ -52,4 +60,13 @@ export function getJsonDbBooksService(file, path) {
       return true;
     }
   };
+
+  const exists = await db.exists(path);
+
+  if (!exists) {
+    await db.push(path, []);
+    await onDbCreated(service);
+  }
+
+  return service;
 }

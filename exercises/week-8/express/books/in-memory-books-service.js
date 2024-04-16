@@ -1,13 +1,17 @@
 /**
- * @returns {import("./types.js").BooksService}
+ * @param {(service: import("./types.js").BooksService) => Promise<void>} onDbCreated
+ * @returns {Promise<import("./types.js").BooksService>}
  */
-export function getInMemoryBooksService() {
+export async function getInMemoryBooksService(onDbCreated = async () => {}) {
   /**
    * @type {import("./types.js").Books}
    */
   const books = [];
 
-  return {
+  /**
+   * @type {import("./types.js").BooksService}
+   */
+  const service = {
     addBook: async book => {
       const index = books.findIndex(candidate => candidate.id === book.id);
 
@@ -38,4 +42,8 @@ export function getInMemoryBooksService() {
       return true;
     }
   };
+
+  await onDbCreated(service);
+
+  return service;
 }

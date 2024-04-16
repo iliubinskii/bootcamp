@@ -30,20 +30,13 @@ async function main() {
     RANDOMUSER_SEED
   );
 
-  const inMemoryBooksService = getInMemoryBooksService();
-
-  const jsonDbBooksService = getJsonDbBooksService(
-    JSON_DB_FILE,
-    JSON_DB_PATH.books
-  );
-
-  await Promise.all([
-    booksFaker(
-      inMemoryBooksService,
-      authorsService,
-      IN_MEMORY_INITIAL_BOOKS_COUNT
-    ),
-    booksFaker(jsonDbBooksService, authorsService, JSON_DB_INITIAL_BOOKS_COUNT)
+  const [inMemoryBooksService, jsonDbBooksService] = await Promise.all([
+    getInMemoryBooksService(async service => {
+      await booksFaker(service, authorsService, IN_MEMORY_INITIAL_BOOKS_COUNT);
+    }),
+    getJsonDbBooksService(JSON_DB_FILE, JSON_DB_PATH.books, async service => {
+      await booksFaker(service, authorsService, JSON_DB_INITIAL_BOOKS_COUNT);
+    })
   ]);
 
   const app = express();
