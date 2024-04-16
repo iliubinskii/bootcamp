@@ -5,7 +5,9 @@ import {
   JSON_DB_INITIAL_BOOKS_COUNT,
   JSON_DB_PATH,
   RANDOMUSER_RESULTS,
-  RANDOMUSER_SEED
+  RANDOMUSER_SEED,
+  RATE_LIMIT_MAX,
+  RATE_LIMIT_WINDOW_MS
 } from "./consts.js";
 import {
   getAuthorControllers,
@@ -22,6 +24,7 @@ import { booksFaker } from "./faker.js";
 import express from "express";
 import fs from "fs";
 import path from "path";
+import rateLimit from "express-rate-limit";
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises -- Ok
 main();
@@ -42,6 +45,13 @@ async function main() {
   ]);
 
   const app = express();
+
+  app.use(
+    rateLimit({
+      windowMs: RATE_LIMIT_WINDOW_MS,
+      max: RATE_LIMIT_MAX
+    })
+  );
 
   app.use(express.json());
 
@@ -68,7 +78,7 @@ async function main() {
   );
 
   app.listen(APP_PORT, () => {
-    console.log(`Server is listening on port ${APP_PORT}`);
+    console.info(`Server is listening on port ${APP_PORT}`);
   });
 
   /**

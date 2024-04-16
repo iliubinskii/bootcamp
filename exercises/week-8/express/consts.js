@@ -28,3 +28,7 @@ export const RANDOMUSER_RESULTS = 10;
 
 // eslint-disable-next-line spellcheck/spell-checker -- Ok
 export const RANDOMUSER_SEED = "Ag4b3c";
+
+export const RATE_LIMIT_MAX = 5;
+
+export const RATE_LIMIT_WINDOW_MS = 10 * 1000;
