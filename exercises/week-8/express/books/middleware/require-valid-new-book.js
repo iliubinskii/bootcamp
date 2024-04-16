@@ -9,7 +9,7 @@ export function requireValidNewBook(req, res, next) {
   try {
     req.customNewBook = NewBookSchema.parse(req.body);
     next();
-  } catch (error) {
+  } catch (err) {
     res.status(400).json({ error: "Invalid book data" });
   }
 }

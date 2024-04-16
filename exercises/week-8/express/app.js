@@ -66,8 +66,8 @@ export async function createApp(port, authorsService, booksService, logger) {
       try {
         await delay(100);
         throw Error("Async error!");
-      } catch (error) {
-        next(error);
+      } catch (err) {
+        next(err);
       }
     }
   );
@@ -90,7 +90,7 @@ export async function createApp(port, authorsService, booksService, logger) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Ok
       // @ts-expect-error
       logger.error(err, { requestId: req.customRequestId });
-      res.status(500).json({ message: err.message });
+      res.status(500).json({ error: "Internal error" });
     }
   );
 

@@ -14,6 +14,10 @@ export interface AuthorsService {
 }
 
 export interface AuthorControllers {
-  getAuthor: (req: Request, res: Response) => Promise<void>;
-  getAuthors: (req: Request, res: Response) => Promise<void>;
+  getAuthor: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+  getAuthors: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<void>;
 }

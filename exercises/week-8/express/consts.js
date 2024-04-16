@@ -1,7 +1,7 @@
 import { assertDefined } from "./utils.js";
-import config from "dotenv";
+import { config } from "dotenv";
 
-const parsed = assertDefined(config.config().parsed);
+const parsed = assertDefined(config().parsed);
 
 export const APP_PORT = {
   inMemory: 3001,

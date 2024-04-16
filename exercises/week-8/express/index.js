@@ -44,8 +44,8 @@ async function main() {
       const booksService = await getInMemoryBooksService(addBooks);
 
       await createApp(APP_PORT.inMemory, authorsService, booksService, logger);
-    } catch (error) {
-      logger.error(error);
+    } catch (err) {
+      logger.error(err);
     }
   }
 
@@ -60,8 +60,8 @@ async function main() {
       );
 
       await createApp(APP_PORT.jsonDb, authorsService, booksService, logger);
-    } catch (error) {
-      logger.error(error);
+    } catch (err) {
+      logger.error(err);
     }
   }
 
@@ -80,8 +80,8 @@ async function main() {
       );
 
       await createApp(APP_PORT.mongodb, authorsService, booksService, logger);
-    } catch (error) {
-      logger.error(error);
+    } catch (err) {
+      logger.error(err);
     }
   }
 

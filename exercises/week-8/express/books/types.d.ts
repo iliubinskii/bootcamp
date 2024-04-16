@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -25,9 +25,17 @@ export interface BooksService {
 }
 
 export interface BookControllers {
-  addBook: (req: Request, res: Response) => Promise<void>;
-  deleteBook: (req: Request, res: Response) => Promise<void>;
-  updateBook: (req: Request, res: Response) => Promise<void>;
-  getBook: (req: Request, res: Response) => Promise<void>;
-  getBooks: (req: Request, res: Response) => Promise<void>;
+  addBook: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+  deleteBook: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<void>;
+  updateBook: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<void>;
+  getBook: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+  getBooks: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
