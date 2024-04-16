@@ -41,11 +41,21 @@ export function getBookControllers(booksService, authorExists) {
     deleteBook: async (req, res) => {
       const id = req.params["id"];
 
-      if (typeof id === "string") {
+      if (typeof id === "string" && id.length) {
         await booksService.deleteBook(id);
 
         res.status(204).send();
       } else res.status(400).send("Missing book id");
+    },
+    getBook: async (req, res) => {
+      const id = req.params["id"];
+
+      if (typeof id === "string" && id.length) {
+        const author = await booksService.getBook(id);
+
+        if (author) res.json(author);
+        else res.status(404).json({ error: "Book not found" });
+      } else res.status(400).json({ error: "Missing book id" });
     },
     getBooks: async (_req, res) => {
       const books = await booksService.getBooks();
@@ -55,7 +65,7 @@ export function getBookControllers(booksService, authorExists) {
     updateBook: async (req, res) => {
       const id = req.params["id"];
 
-      if (typeof id === "string") {
+      if (typeof id === "string" && id.length) {
         /**
          * @type {unknown}
          */

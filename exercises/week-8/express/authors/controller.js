@@ -12,7 +12,7 @@ export function getAuthorControllers(authorsService) {
 
         if (author) res.json(author);
         else res.status(404).json({ error: "Author not found" });
-      } else res.status(400).json({ error: "Author ID is required" });
+      } else res.status(400).json({ error: "Missing author id" });
     },
     getAuthors: async (_req, res) => {
       const authors = await authorsService.getAuthors();

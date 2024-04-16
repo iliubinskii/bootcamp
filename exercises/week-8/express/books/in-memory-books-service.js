@@ -24,6 +24,7 @@ export function getInMemoryBooksService() {
 
       if (index !== -1) books.splice(index, 1);
     },
+    getBook: async id => books.find(candidate => candidate.id === id),
     getBooks: async () => books,
     updateBook: async book => {
       const index = books.findIndex(candidate => candidate.id === book.id);

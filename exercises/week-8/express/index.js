@@ -47,7 +47,7 @@ async function main() {
       getBookControllers(inMemoryBooksService, async id => {
         const author = await authorsService.getAuthor(id);
 
-        return typeof author === "object";
+        return Boolean(author);
       })
     )
   );
