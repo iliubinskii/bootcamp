@@ -1,5 +1,12 @@
 import { Request, Response } from "express";
 
+declare module "express-serve-static-core" {
+  interface Request {
+    customNewBook?: Omit<Book, "id">;
+    customExistingBook?: Book;
+  }
+}
+
 export interface Book {
   authorId: string;
   id: string;

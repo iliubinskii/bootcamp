@@ -69,12 +69,12 @@ async function main() {
 
   app.use(
     "/books/in-memory",
-    getBookRoutes(getBookControllers(inMemoryBooksService, authorExists))
+    getBookRoutes(getBookControllers(inMemoryBooksService), authorExists)
   );
 
   app.use(
     "/books/json-db",
-    getBookRoutes(getBookControllers(jsonDbBooksService, authorExists))
+    getBookRoutes(getBookControllers(jsonDbBooksService), authorExists)
   );
 
   app.listen(APP_PORT, () => {
