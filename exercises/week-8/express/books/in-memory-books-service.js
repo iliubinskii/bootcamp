@@ -9,12 +9,27 @@ export function getInMemoryBooksService() {
 
   return {
     addBook: async book => {
-      if (books.find(candidate => candidate.id === book.id)) return false;
+      const index = books.findIndex(candidate => candidate.id === book.id);
 
-      books.push(book);
+      if (index !== -1) return false;
+
+      const { authorId, name, price, id } = book;
+
+      books.push({ authorId, name, price, id });
 
       return true;
     },
-    getBooks: async () => books
+    getBooks: async () => books,
+    updateBook: async book => {
+      const index = books.findIndex(candidate => candidate.id === book.id);
+
+      if (index === -1) return false;
+
+      const { authorId, name, price, id } = book;
+
+      books.splice(index, 1, { authorId, name, price, id });
+
+      return true;
+    }
   };
 }

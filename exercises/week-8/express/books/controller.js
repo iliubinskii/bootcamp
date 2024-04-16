@@ -11,45 +11,71 @@ export function getBookControllers(booksService, authorExists) {
       /**
        * @type {unknown}
        */
-      const book = req.body;
+      const body = req.body;
 
       if (
-        typeof book === "object" &&
-        book &&
-        "authorId" in book &&
-        "name" in book &&
-        "price" in book &&
-        typeof book.authorId === "string" &&
-        typeof book.name === "string" &&
-        typeof book.price === "string"
+        typeof body === "object" &&
+        body &&
+        Object.values(body).length === 3 &&
+        "authorId" in body &&
+        "name" in body &&
+        "price" in body &&
+        typeof body.authorId === "string" &&
+        typeof body.name === "string" &&
+        typeof body.price === "string"
       ) {
-        if ("id" in book)
-          res
-            .status(400)
-            .send("Possibly an existing book, remove the id field to create");
-        else {
-          const author = await authorExists(book.authorId);
+        const { name, price, authorId } = body;
 
-          if (author) {
-            const { name, price, authorId } = book;
+        const author = await authorExists(authorId);
 
-            const success = await booksService.addBook({
-              authorId,
-              name,
-              price,
-              id: uuidv4()
-            });
+        if (author) {
+          const book = { authorId, id: uuidv4(), name, price };
 
-            if (success) res.status(201).send("Book added");
-            else res.status(409).send("Book already exists");
-          } else res.status(400).send("Author not found");
-        }
+          const success = await booksService.addBook(book);
+
+          if (success) res.status(201).json(book);
+          else res.status(409).send("Book already exists");
+        } else res.status(400).send("Author not found");
       } else res.status(400).send("Invalid book data");
     },
     getBooks: async (_req, res) => {
       const books = await booksService.getBooks();
 
       res.json(books);
+    },
+    updateBook: async (req, res) => {
+      /**
+       * @type {unknown}
+       */
+      const body = req.body;
+
+      if (
+        typeof body === "object" &&
+        body &&
+        Object.values(body).length === 4 &&
+        "authorId" in body &&
+        "id" in body &&
+        "name" in body &&
+        "price" in body &&
+        typeof body.authorId === "string" &&
+        typeof body.id === "string" &&
+        typeof body.name === "string" &&
+        typeof body.price === "string" &&
+        body.id === req.params["id"]
+      ) {
+        const { authorId, id, name, price } = body;
+
+        const author = await authorExists(authorId);
+
+        if (author) {
+          const book = { authorId, id, name, price };
+
+          const success = await booksService.updateBook(book);
+
+          if (success) res.status(200).json(book);
+          else res.status(404).send("Book not found");
+        } else res.status(400).send("Author not found");
+      } else res.status(400).send("Invalid book data");
     }
   };
 }
