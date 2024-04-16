@@ -43,6 +43,8 @@ async function main() {
 
   const app = express();
 
+  app.use(express.json());
+
   app.get("/", (_req, res) => {
     const dataBuffer = fs.readFileSync(
       path.join(import.meta.dirname, "postman.json")
