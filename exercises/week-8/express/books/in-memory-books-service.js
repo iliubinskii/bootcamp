@@ -19,6 +19,11 @@ export function getInMemoryBooksService() {
 
       return true;
     },
+    deleteBook: async id => {
+      const index = books.findIndex(candidate => candidate.id === id);
+
+      if (index !== -1) books.splice(index, 1);
+    },
     getBooks: async () => books,
     updateBook: async book => {
       const index = books.findIndex(candidate => candidate.id === book.id);

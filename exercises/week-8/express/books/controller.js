@@ -38,44 +38,57 @@ export function getBookControllers(booksService, authorExists) {
         } else res.status(400).send("Author not found");
       } else res.status(400).send("Invalid book data");
     },
+    deleteBook: async (req, res) => {
+      const id = req.params["id"];
+
+      if (typeof id === "string") {
+        await booksService.deleteBook(id);
+
+        res.status(204).send();
+      } else res.status(400).send("Missing book id");
+    },
     getBooks: async (_req, res) => {
       const books = await booksService.getBooks();
 
       res.json(books);
     },
     updateBook: async (req, res) => {
-      /**
-       * @type {unknown}
-       */
-      const body = req.body;
+      const id = req.params["id"];
 
-      if (
-        typeof body === "object" &&
-        body &&
-        Object.values(body).length === 4 &&
-        "authorId" in body &&
-        "id" in body &&
-        "name" in body &&
-        "price" in body &&
-        typeof body.authorId === "string" &&
-        typeof body.id === "string" &&
-        typeof body.name === "string" &&
-        typeof body.price === "string" &&
-        body.id === req.params["id"]
-      ) {
-        const { authorId, id, name, price } = body;
+      if (typeof id === "string") {
+        /**
+         * @type {unknown}
+         */
+        const body = req.body;
 
-        const author = await authorExists(authorId);
+        if (
+          typeof body === "object" &&
+          body &&
+          Object.values(body).length === 4 &&
+          "authorId" in body &&
+          "id" in body &&
+          "name" in body &&
+          "price" in body &&
+          typeof body.authorId === "string" &&
+          typeof body.id === "string" &&
+          typeof body.name === "string" &&
+          typeof body.price === "string" &&
+          body.id === id
+        ) {
+          const { authorId, name, price } = body;
 
-        if (author) {
-          const book = { authorId, id, name, price };
+          const author = await authorExists(authorId);
 
-          const success = await booksService.updateBook(book);
+          if (author) {
+            const book = { authorId, id, name, price };
 
-          if (success) res.status(200).json(book);
-          else res.status(404).send("Book not found");
-        } else res.status(400).send("Author not found");
-      } else res.status(400).send("Invalid book data");
+            const success = await booksService.updateBook(book);
+
+            if (success) res.status(200).json(book);
+            else res.status(404).send("Book not found");
+          } else res.status(400).send("Author not found");
+        } else res.status(400).send("Invalid book data");
+      } else res.status(400).send("Missing book id");
     }
   };
 }

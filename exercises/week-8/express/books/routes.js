@@ -12,7 +12,8 @@ export function getBookRoutes(bookControllers) {
   bookRoutes
     .get("/", bookControllers.getBooks)
     .post("/", bookControllers.addBook)
-    .put("/:id", bookControllers.updateBook);
+    .put("/:id", bookControllers.updateBook)
+    .delete("/:id", bookControllers.deleteBook);
 
   return bookRoutes;
 }
