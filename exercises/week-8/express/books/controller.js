@@ -1,4 +1,4 @@
-import { assertDefined } from "./utils.js";
+import { assertDefined } from "../utils.js";
 import { v4 as uuidv4 } from "uuid";
 
 /**

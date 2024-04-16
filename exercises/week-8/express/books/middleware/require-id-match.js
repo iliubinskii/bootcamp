@@ -1,4 +1,4 @@
-import { assertDefined } from "../utils.js";
+import { assertDefined } from "../../utils.js";
 
 /**
  * @param {import("express").Request} req
