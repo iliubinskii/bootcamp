@@ -349,9 +349,9 @@
               "path": [
                 "books",
                 "{{booksService}}",
-                "0544a724-fd7c-52ab-aa42-06abb1531501"
+                "ff8d72d1-b573-5b33-b1f5-32519c42a516"
               ],
-              "raw": "{{apiUrl}}/books/{{booksService}}/0544a724-fd7c-52ab-aa42-06abb1531501"
+              "raw": "{{apiUrl}}/books/{{booksService}}/ff8d72d1-b573-5b33-b1f5-32519c42a516"
             }
           },
           "response": []

@@ -18,7 +18,7 @@ export async function getJsonDbBooksService(
    */
   const service = {
     addBook: async book => {
-      const index = await db.getIndex(path, "id", book.id);
+      const index = await db.getIndex(path, book.id, "id");
 
       if (index !== -1) return false;
 
@@ -29,7 +29,7 @@ export async function getJsonDbBooksService(
       return true;
     },
     deleteBook: async id => {
-      const index = await db.getIndex(path, "id", id);
+      const index = await db.getIndex(path, id, "id");
 
       if (index === -1) return 0;
 
@@ -38,7 +38,7 @@ export async function getJsonDbBooksService(
       return 1;
     },
     getBook: async id => {
-      const index = await db.getIndex(path, "id", id);
+      const index = await db.getIndex(path, id, "id");
 
       if (index === -1) return undefined;
 
@@ -48,7 +48,7 @@ export async function getJsonDbBooksService(
       return db.getData(path);
     },
     updateBook: async book => {
-      const index = await db.getIndex(path, "id", book.id);
+      const index = await db.getIndex(path, book.id, "id");
 
       if (index === -1) return false;
 
