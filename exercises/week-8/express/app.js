@@ -1,12 +1,12 @@
 import { RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS } from "./consts.js";
 import { getAuthorControllers, getAuthorRoutes } from "./authors/index.js";
 import { getBookControllers, getBookRoutes } from "./books/index.js";
+import { getRequestLogger, requestId } from "./global-middleware/index.js";
 import { delay } from "./utils.js";
 import express from "express";
 import fs from "fs";
 import path from "path";
 import rateLimit from "express-rate-limit";
-import { requestId } from "./request-id/index.js";
 
 /**
  * @param {number} port
@@ -18,6 +18,7 @@ export async function createApp(port, authorsService, booksService, logger) {
   const app = express();
 
   app.use(requestId);
+  app.use(getRequestLogger(logger));
 
   app.use(
     rateLimit({
@@ -65,8 +66,8 @@ export async function createApp(port, authorsService, booksService, logger) {
       try {
         await delay(100);
         throw Error("Async error!");
-      } catch (err) {
-        next(err);
+      } catch (error) {
+        next(error);
       }
     }
   );

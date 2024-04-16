@@ -19,10 +19,10 @@ import { createApp } from "./app.js";
 import { createLogger } from "./logger.js";
 import { getRandomuserAuthorsProvider } from "./authors/index.js";
 
-const logger = createLogger(LOGGER_FILE, LOGGER_LOG_LEVEL, 0);
+const startupLogger = createLogger(LOGGER_FILE, LOGGER_LOG_LEVEL, 0);
 
 main().catch(error => {
-  logger.error(error);
+  startupLogger.error(error);
 });
 
 async function main() {
