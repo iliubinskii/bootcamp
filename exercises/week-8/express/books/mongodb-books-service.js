@@ -2,11 +2,13 @@ import mongoose from "mongoose";
 
 /**
  * @param {string} endpoint
+ * @param {string} dbName
  * @param {(service: import("./types.js").BooksService) => Promise<void>} onDbCreated
  * @returns {Promise<import("./types.js").BooksService>}
  */
 export async function getMongodbBooksService(
   endpoint,
+  dbName,
   onDbCreated = async () => {}
 ) {
   /**
@@ -79,7 +81,7 @@ export async function getMongodbBooksService(
     }
   };
 
-  await mongoose.connect(endpoint);
+  await mongoose.connect(endpoint, { dbName });
   await onDbCreated(service);
 
   return service;

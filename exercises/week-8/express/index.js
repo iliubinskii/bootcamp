@@ -2,6 +2,7 @@ import {
   APP_PORT,
   JSON_DB_FILE,
   JSON_DB_PATH,
+  MONGODB_DB_NAME,
   MONGODB_ENDPOINT,
   RANDOMUSER_RESULTS,
   RANDOMUSER_SEED,
@@ -40,7 +41,7 @@ async function main() {
     await Promise.all([
       getInMemoryBooksService(addBooks),
       getJsonDbBooksService(JSON_DB_FILE, JSON_DB_PATH.books, addBooks),
-      getMongodbBooksService(MONGODB_ENDPOINT, addBooks)
+      getMongodbBooksService(MONGODB_ENDPOINT, MONGODB_DB_NAME, addBooks)
     ]);
 
   const app = express();
