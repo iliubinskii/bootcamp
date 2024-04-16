@@ -24,7 +24,7 @@ export async function getJsonDbBooksService(
 
       const { authorId, name, price, id } = book;
 
-      await db.push(path, { authorId, name, price, id });
+      await db.push(`${path}[]`, { authorId, name, price, id });
 
       return true;
     },
