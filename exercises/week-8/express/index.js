@@ -1,8 +1,6 @@
 import {
   APP_PORT,
-  IN_MEMORY_INITIAL_BOOKS_COUNT,
   JSON_DB_FILE,
-  JSON_DB_INITIAL_BOOKS_COUNT,
   JSON_DB_PATH,
   RANDOMUSER_RESULTS,
   RANDOMUSER_SEED,
@@ -37,10 +35,10 @@ async function main() {
 
   const [inMemoryBooksService, jsonDbBooksService] = await Promise.all([
     getInMemoryBooksService(async service => {
-      await booksFaker(service, authorsService, IN_MEMORY_INITIAL_BOOKS_COUNT);
+      await booksFaker(service, authorsService);
     }),
     getJsonDbBooksService(JSON_DB_FILE, JSON_DB_PATH.books, async service => {
-      await booksFaker(service, authorsService, JSON_DB_INITIAL_BOOKS_COUNT);
+      await booksFaker(service, authorsService);
     })
   ]);
 
