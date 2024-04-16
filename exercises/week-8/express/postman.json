@@ -173,7 +173,7 @@
           "response": []
         },
         {
-          "name": "Update Book / Invalid data",
+          "name": "Update Book / ID Mismatch",
           "request": {
             "body": {
               "mode": "raw",
@@ -183,6 +183,34 @@
                 }
               },
               "raw": "{\r\n    \"authorId\": \"698adbb5-1926-4c43-8451-aedad9fcaf9b\",\r\n    \"id\": \"c6260b4f-ec74-5a9c-ba08-45583ef74b92\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": \"$100\"\r\n}"
+            },
+            "header": [],
+            "method": "PUT",
+            "url": {
+              "host": [
+                "{{apiUrl}}"
+              ],
+              "path": [
+                "books",
+                "{{booksService}}",
+                "f984f4bd-cde0-5656-7632-6e5d329aff6a"
+              ],
+              "raw": "{{apiUrl}}/books/{{booksService}}/f984f4bd-cde0-5656-7632-6e5d329aff6a"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Book / Invalid data",
+          "request": {
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\r\n    \"authorId\": \"698adbb5-1926-4c43-8451-aedad9fcaf9b\",\r\n    \"id\": \"f984f4bd-cde0-5656-7632-6e5d329aff6a\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": \"$100\",\r\n    \"unknown\": 1\r\n}"
             },
             "header": [],
             "method": "PUT",
