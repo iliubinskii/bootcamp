@@ -31,7 +31,7 @@ export async function createApp(port, authorsService, booksService, logger) {
 
   app.get("/", (_req, res) => {
     const dataBuffer = fs.readFileSync(
-      path.join(import.meta.dirname, "postman.json")
+      path.join(import.meta.dirname, "postman")
     );
 
     const dataStr = dataBuffer.toString();

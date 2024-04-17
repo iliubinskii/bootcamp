@@ -11,7 +11,7 @@ export interface Book {
   authorId: string;
   id: string;
   name: string;
-  price: string;
+  price: number;
 }
 
 export type Books = Book[];

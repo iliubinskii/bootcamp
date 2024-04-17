@@ -92,7 +92,7 @@ const BookSchema = new mongoose.Schema(
     _id: { type: String, required: true },
     authorId: { type: String, required: true },
     name: { type: String, required: true },
-    price: { type: String, required: true }
+    price: { type: Number, required: true }
   },
   { _id: false }
 );

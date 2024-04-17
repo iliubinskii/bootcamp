@@ -16,12 +16,7 @@ export async function booksFaker(booksService, authorsService) {
     authorId: faker.helpers.arrayElement(authors).id,
     id: uuidFaker(name),
     name,
-    price: faker.finance.amount({
-      dec: 0,
-      max: 1500,
-      min: 100,
-      symbol: "$"
-    })
+    price: parseFloat(faker.commerce.price())
   }));
 
   await Promise.all(books.map(async book => await booksService.addBook(book)));
