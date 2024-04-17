@@ -1,3 +1,8 @@
+/*
+TODO:
+- Implement PATCH /books/:id
+- Write tests
+*/
 import {
   APP_PORT,
   JSON_DB_FILE,
