@@ -39,7 +39,7 @@ function formatters(info) {
 
   const messageStr = stack ?? message;
 
-  const timestampStr = format(timestamp, "d MMM, HH:mm");
+  const timestampStr = format(timestamp, "d MMM, HH:mm:ss.SSS");
 
   if (requestId) {
     const requestIdStr = requestId.substr(0, 6);
