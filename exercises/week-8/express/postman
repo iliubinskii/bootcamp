@@ -1,0 +1,471 @@
+{
+	"info": {
+		"_postman_id": "4592bf7c-e1b0-4ecf-a3c6-f81ba600cb9c",
+		"name": "Express",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33192992"
+	},
+	"item": [
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Get Authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/authors",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/authors/1c1ed1b7-4e89-48f0-9e70-b6c9b7317e7f",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"authors",
+								"1c1ed1b7-4e89-48f0-9e70-b6c9b7317e7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author by ID / Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/authors/abc",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"authors",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/books",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"f984f4bd-cde0-5656-7632-6e5d329aff6a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book by ID / Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/books/abc",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"698adbb5-1926-4c43-8451-aedad9fcaf9b\",\r\n    \"id\": \"f984f4bd-cde0-5656-7632-6e5d329aff6a\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"f984f4bd-cde0-5656-7632-6e5d329aff6a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book / ID Mismatch",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"698adbb5-1926-4c43-8451-aedad9fcaf9b\",\r\n    \"id\": \"c6260b4f-ec74-5a9c-ba08-45583ef74b92\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"f984f4bd-cde0-5656-7632-6e5d329aff6a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book / Invalid data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"698adbb5-1926-4c43-8451-aedad9fcaf9b\",\r\n    \"id\": \"f984f4bd-cde0-5656-7632-6e5d329aff6a\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"f984f4bd-cde0-5656-7632-6e5d329aff6a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book / No Author",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"abc\",\r\n    \"id\": \"f984f4bd-cde0-5656-7632-6e5d329aff6a\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books/f984f4bd-cde0-5656-7632-6e5d329aff6a",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"f984f4bd-cde0-5656-7632-6e5d329aff6a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book / Not Found",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"698adbb5-1926-4c43-8451-aedad9fcaf9b\",\r\n    \"id\": \"abc\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books/abc",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"1c1ed1b7-4e89-48f0-9e70-b6c9b7317e7f\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book / Invalid data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"1c1ed1b7-4e89-48f0-9e70-b6c9b7317e7f\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book / No Author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"abc\",\r\n    \"name\": \"Postman test\",\r\n    \"price\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/books",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/books/ff8d72d1-b573-5b33-b1f5-32519c42a516",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"books",
+								"ff8d72d1-b573-5b33-b1f5-32519c42a516"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/health",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sync Reject",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/sync-reject",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"sync-reject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Async Reject",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/async-reject",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"async-reject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/abc",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"abc"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

@@ -36,6 +36,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-floating-promises": "warn",
     "@typescript-eslint/no-misused-promises": "warn",
+    "no-console": ["warn", { allow: ["error", "info"] }],
     "prettier/prettier": [
       "warn",
       {
@@ -61,7 +62,9 @@ module.exports = {
           "autofix",
           "aviv",
           "axios",
+          "bootcamp",
           "commonjs",
+          "dec",
           "ecma",
           "eee",
           "favicons",
@@ -69,8 +72,11 @@ module.exports = {
           "jsx",
           "keyof",
           "lang",
+          "logform",
           "minecraft",
+          "mongodb",
           "parens",
+          "printf",
           "randomuser",
           "readonly",
           "req",
@@ -78,7 +84,11 @@ module.exports = {
           "str",
           "subdomain",
           "tsconfig",
-          "typeof"
+          "txt",
+          "typeof",
+          "uuidv4",
+          "winston",
+          "zod"
         ],
         "minLength": 3
       }

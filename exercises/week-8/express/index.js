@@ -1,13 +1,99 @@
-import express from "express";
+/*
+TODO:
+- Implement PATCH /books/:id
+- Write tests
+*/
+import {
+  APP_PORT,
+  JSON_DB_FILE,
+  JSON_DB_PATH,
+  LOGGER_FILE,
+  LOGGER_LOG_LEVEL,
+  MONGODB_DB_NAME,
+  MONGODB_ENDPOINT,
+  RANDOMUSER_RESULTS,
+  RANDOMUSER_SEED
+} from "./consts.js";
+import {
+  getInMemoryBooksService,
+  getJsonDbBooksService,
+  getMongodbBooksService
+} from "./books/index.js";
+import { booksFaker } from "./faker.js";
+import { createApp } from "./app.js";
+import { createLogger } from "./logger.js";
+import { getRandomuserAuthorsProvider } from "./authors/index.js";
 
-const app = express();
+const startupLogger = createLogger(LOGGER_FILE, LOGGER_LOG_LEVEL, 0);
 
-app.use(express.json());
-
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
+main().catch(error => {
+  startupLogger.error(error);
 });
 
-app.get("/", (_req, res) => {
-  res.send("Hello World!");
-});
+async function main() {
+  const authorsService = getRandomuserAuthorsProvider(
+    RANDOMUSER_RESULTS,
+    RANDOMUSER_SEED
+  );
+
+  await Promise.all([createApp1(), createApp2(), createApp3()]);
+
+  async function createApp1() {
+    const logger = createLogger(
+      LOGGER_FILE,
+      LOGGER_LOG_LEVEL,
+      APP_PORT.inMemory
+    );
+
+    try {
+      const booksService = await getInMemoryBooksService(addBooks);
+
+      await createApp(APP_PORT.inMemory, authorsService, booksService, logger);
+    } catch (err) {
+      logger.error(err);
+    }
+  }
+
+  async function createApp2() {
+    const logger = createLogger(LOGGER_FILE, LOGGER_LOG_LEVEL, APP_PORT.jsonDb);
+
+    try {
+      const booksService = await getJsonDbBooksService(
+        JSON_DB_FILE,
+        JSON_DB_PATH.books,
+        addBooks
+      );
+
+      await createApp(APP_PORT.jsonDb, authorsService, booksService, logger);
+    } catch (err) {
+      logger.error(err);
+    }
+  }
+
+  async function createApp3() {
+    const logger = createLogger(
+      LOGGER_FILE,
+      LOGGER_LOG_LEVEL,
+      APP_PORT.mongodb
+    );
+
+    try {
+      const booksService = await getMongodbBooksService(
+        MONGODB_ENDPOINT,
+        MONGODB_DB_NAME,
+        addBooks
+      );
+
+      await createApp(APP_PORT.mongodb, authorsService, booksService, logger);
+    } catch (err) {
+      logger.error(err);
+    }
+  }
+
+  /**
+   * @param {import("./books/types.js").BooksService} service
+   */
+  async function addBooks(service) {
+    await booksFaker(service, authorsService);
+  }
+}
